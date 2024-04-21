@@ -16,20 +16,18 @@ public class TopicResponseDTOTest {
         assertNull(dto.getId());
         assertNull(dto.getDescription());
         assertNull(dto.getVotes());
-        assertEquals(0, dto.getQuantityVotes());
     }
 
     @Test
     public void testAllArgsConstructor() {
         List<VoteResponseDTO> votes = new ArrayList<>();
         votes.add(new VoteResponseDTO());
-        TopicResponseDTO dto = new TopicResponseDTO("1", "New Topic", votes, 1);
+        TopicResponseDTO dto = new TopicResponseDTO("1", "New Topic", votes);
 
         assertEquals("1", dto.getId());
         assertEquals("New Topic", dto.getDescription());
         assertNotNull(dto.getVotes());
         assertEquals(1, dto.getVotes().size());
-        assertEquals(1, dto.getQuantityVotes());
     }
 
     @Test
@@ -42,13 +40,11 @@ public class TopicResponseDTOTest {
                 .id("1")
                 .description("New Topic")
                 .votes(votes)
-                .quantityVotes(1)
                 .build();
 
         assertEquals("1", dto.getId());
         assertEquals("New Topic", dto.getDescription());
         assertEquals(1, dto.getVotes().size());
-        assertEquals(1, dto.getQuantityVotes());
     }
 
     @Test
@@ -60,11 +56,9 @@ public class TopicResponseDTOTest {
         List<VoteResponseDTO> votes = new ArrayList<>();
         votes.add(new VoteResponseDTO());
         dto.setVotes(votes);
-        dto.setQuantityVotes(1);
 
         assertEquals("1", dto.getId());
         assertEquals("New Topic", dto.getDescription());
         assertEquals(1, dto.getVotes().size());
-        assertEquals(1, dto.getQuantityVotes());
     }
 }

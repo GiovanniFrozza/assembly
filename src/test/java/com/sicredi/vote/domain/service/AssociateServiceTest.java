@@ -57,7 +57,7 @@ public class AssociateServiceTest {
     public void testCreateAssociateDuplicated() {
         AssociateRequestDTO associateRequestDTO = new AssociateRequestDTO();
         associateRequestDTO.setName("Giovanni");
-        associateRequestDTO.setCpf("597.098.670-44");
+        associateRequestDTO.setCpf("59709867044");
 
         when(associateRepository.findByCpf(associateRequestDTO.getCpf())).thenReturn(Optional.of(new Associate()));
 
