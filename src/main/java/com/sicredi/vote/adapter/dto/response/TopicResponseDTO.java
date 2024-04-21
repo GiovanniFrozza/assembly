@@ -13,5 +13,4 @@ public class TopicResponseDTO {
     private String id;
     private String description;
     private List<VoteResponseDTO> votes;
-    private int quantityVotes;
 }

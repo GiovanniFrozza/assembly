@@ -2,6 +2,7 @@ package com.sicredi.vote.adapter.resource;
 
 import com.sicredi.vote.adapter.dto.request.CreateSessionRequestDTO;
 import com.sicredi.vote.adapter.dto.request.TopicRequestDTO;
+import com.sicredi.vote.adapter.dto.request.TopicResultRequestDTO;
 import com.sicredi.vote.adapter.dto.request.VoteRequestDTO;
 import com.sicredi.vote.adapter.dto.response.TopicResponseDTO;
 import com.sicredi.vote.adapter.dto.response.VoteResponseDTO;
@@ -74,6 +75,13 @@ public class TopicController {
 
         this.topicService.registerVote(voteRequestDTO);
         log.info("Vote registered successfully for topic ID: {}", voteRequestDTO.getTopicId());
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @PostMapping("/resultVote")
+    public ResponseEntity<Object> resultVote(@RequestBody TopicResultRequestDTO topicResultRequestDTO) {
+
+        var result = this.topicService.generateResult(topicResultRequestDTO.getId());
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 }

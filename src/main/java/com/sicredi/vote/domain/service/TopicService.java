@@ -4,8 +4,10 @@ import com.sicredi.vote.adapter.dto.request.CreateSessionRequestDTO;
 import com.sicredi.vote.adapter.dto.request.TopicRequestDTO;
 import com.sicredi.vote.adapter.dto.request.VoteRequestDTO;
 import com.sicredi.vote.adapter.dto.response.TopicResponseDTO;
+import com.sicredi.vote.adapter.dto.response.TopicResultResponseDTO;
 import com.sicredi.vote.adapter.dto.response.TopicSessionResponseDTO;
 import com.sicredi.vote.adapter.mapper.TopicMapper;
+import com.sicredi.vote.domain.enumerator.ResultType;
 import com.sicredi.vote.domain.model.Associate;
 import com.sicredi.vote.domain.model.Topic;
 import com.sicredi.vote.domain.model.Vote;
@@ -46,7 +48,7 @@ public class TopicService {
                 .orElseThrow(TopicNotFoundException::new);
     }
 
-    public List<TopicResponseDTO> findAll(){
+    public List<TopicResponseDTO> findAll() {
         return this.topic.findAll().stream()
                 .map(TopicMapper::topicEntityToResponse
                 ).collect(Collectors.toList());
@@ -76,7 +78,7 @@ public class TopicService {
                 .associateVote(voteRequestDTO.isVote())
                 .build();
 
-        if(topic.getVotes() == null) {
+        if (topic.getVotes() == null) {
             topic.setVotes(new ArrayList<>());
         }
 
@@ -87,13 +89,23 @@ public class TopicService {
         this.topic.save(topic);
     }
 
-    public TopicResponseDTO findTopic(String id) {
+    public TopicResultResponseDTO generateResult(String id) {
         Topic topic = findById(id);
-        TopicResponseDTO topicResponseDTO = TopicMapper.topicEntityToResponse(topic);
 
-        topicResponseDTO.setQuantityVotes(topicResponseDTO.getVotes().size());
+        if (topic.getVotes() != null) {
+            int total = topic.getVotes().size();
+            int yes = (int) topic.getVotes().stream().filter(Vote::isAssociateVote).count();
+            int no = total - yes;
 
-        return topicResponseDTO;
+            return TopicResultResponseDTO.builder()
+                    .totalVotes(total)
+                    .yesVotes(yes)
+                    .noVotes(no)
+                    .mostVoted(yes > no ? ResultType.YES : yes < no ? ResultType.NO : ResultType.DRAW)
+                .build();
+        }
+
+        return TopicResultResponseDTO.builder().build();
     }
 
     private void validateSessionTiming(Topic topic) {
