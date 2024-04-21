@@ -9,12 +9,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,7 +39,7 @@ public class AssociateController {
     }
 
     @Operation(summary = "Find all associates", description = "Find all associates.")
-    @ApiResponse(responseCode = "201", description = "Associates found successfully", content = @Content(schema = @Schema(implementation = AssociateResponseDTO.class)))
+    @ApiResponse(responseCode = "200", description = "Associates found successfully", content = @Content(schema = @Schema(implementation = AssociateResponseDTO.class)))
     @ApiResponse(responseCode = "400", description = "Invalid data supplied", content = @Content(schema = @Schema(implementation = ErrorMessageDTO.class)))
     @GetMapping
     public ResponseEntity<Object> findAll() {
@@ -47,7 +47,7 @@ public class AssociateController {
 
         var result = this.associateService.findAll();
         log.info("Associates found successfully");
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
 
