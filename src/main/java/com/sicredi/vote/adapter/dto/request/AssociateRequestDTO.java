@@ -14,7 +14,7 @@ public class AssociateRequestDTO {
     @NotBlank(message = "The field [name] is required and cannot be empty.")
     private String name;
 
-    @Schema(description = "Cpf of the associate", example = "51434347001")
+    @Schema(description = "Cpf of the associate", example = "54409078070")
     @NotBlank(message = "The field [cpf] is required and cannot be empty.")
     private String cpf;
 }
