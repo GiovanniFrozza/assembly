@@ -30,7 +30,7 @@ public class AssociateService {
         Associate associate = this.associate.save(Associate.builder()
                 .name(associateRequestDTO.getName())
                 .cpf(cpf)
-            .build());
+                .build());
 
         return associateEntityToResponse(associate);
     }
@@ -40,10 +40,10 @@ public class AssociateService {
                 .orElseThrow(AssociateNotFoundException::new);
     }
 
-    public List<AssociateResponseDTO> findAll(){
+    public List<AssociateResponseDTO> findAll() {
         return this.associate.findAll().stream()
                 .map(AssociateMapper::associateEntityToResponse
-            ).collect(Collectors.toList());
+                ).collect(Collectors.toList());
     }
 
     private void verifyDuplicatedCpf(String cpf) {
@@ -54,7 +54,7 @@ public class AssociateService {
         }
     }
 
-    private String resolveCpf(String cpf){
+    private String resolveCpf(String cpf) {
         return cpf.replaceAll("\\W", "");
     }
 }
