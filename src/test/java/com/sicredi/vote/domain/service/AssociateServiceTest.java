@@ -2,28 +2,27 @@ package com.sicredi.vote.domain.service;
 
 import com.sicredi.vote.adapter.dto.request.AssociateRequestDTO;
 import com.sicredi.vote.adapter.dto.response.AssociateResponseDTO;
-import com.sicredi.vote.adapter.mapper.AssociateMapper;
 import com.sicredi.vote.domain.model.Associate;
 import com.sicredi.vote.domain.repository.AssociateRepository;
 import com.sicredi.vote.infrastructure.exceptions.AssociateNotFoundException;
 import com.sicredi.vote.infrastructure.exceptions.CpfAlreadyExistsException;
 import org.junit.Test;
-import org.mockito.Mockito;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.verify;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AssociateServiceTest {
@@ -91,12 +90,12 @@ public class AssociateServiceTest {
     public void testFindAll() {
         Associate associate1 = new Associate();
         associate1.setId("1");
-        associate1.setName("John Doe");
+        associate1.setName("Giovanni");
         associate1.setCpf("12345678900");
 
         Associate associate2 = new Associate();
         associate2.setId("2");
-        associate2.setName("Jane Doe");
+        associate2.setName("Giovanni");
         associate2.setCpf("98765432100");
 
         when(associateRepository.findAll()).thenReturn(Arrays.asList(associate1, associate2));
@@ -114,12 +113,10 @@ public class AssociateServiceTest {
         assertNotNull(results);
         assertEquals(2, results.size());
         assertEquals("1", results.get(0).getId());
-        assertEquals("John Doe", results.get(0).getName());
+        assertEquals("Giovanni", results.get(0).getName());
         assertEquals("12345678900", results.get(0).getCpf());
         assertEquals("2", results.get(1).getId());
-        assertEquals("Jane Doe", results.get(1).getName());
+        assertEquals("Giovanni", results.get(1).getName());
         assertEquals("98765432100", results.get(1).getCpf());
     }
-
-
 }
