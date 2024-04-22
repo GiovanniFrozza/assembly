@@ -62,7 +62,25 @@ Acesse `http://localhost:8080/swagger-ui.html` para visualizar e interagir com a
 
 
 ## Decisões de Projeto
+Para o desafio sugerido foi escolhido o mongoDB porque se adapta melhor ao negócio proposto.
+
 ### Escolha do MongoDB
-- **Flexibilidade de Esquema**: Permite um modelo de dados mais flexível que se adapta facilmente às mudanças..
-- **Escalabilidade**: Alta escalabilidade horizontal, facilitando o aumento da capacidade de armazenamento. Isso é ideal para lidar com o aumento de carga durante períodos de votação intensos.
-- **Desempenho com Grandes Volumes de Dados**: Para aplicativos que lidam com grandes volumes de inserções e consultas, como um sistema de votação, o MongoDB proporciona um desempenho robusto.
+- **Flexibilidade**: Permite um modelo de dados mais flexível que se adapta facilmente às mudanças.
+- **Escalabilidade**: Alta escalabilidade horizontal, facilitando o aumento da capacidade de armazenamento. Isso é ideal para lidar com o aumento de carga.
+- **Desempenho com grandes volumes de dados**: Para aplicativos que lidam com grandes volumes de inserções e consultas, o MongoDB proporciona um desempenho robusto.
+
+### Estratégias de Versionamento
+
+#### Versionamento por Caminho de URI
+Utilizada para mudanças significativas na API. A versão é explicitamente incluída no caminho do URI, facilitando a distinção entre diferentes versões. Por exemplo:
+- `/api/v1`
+- `/api/v2`
+
+#### Versionamento por Parâmetro de Query
+Utilizado para ajustes mais específicos em métodos existentes, permitindo diferentes representações de um mesmo recurso sem criar novos endereços URI. Exemplo:
+- `/v1/products?version=1`
+
+Isso permite atualizações mais fáceis, oferecendo flexibilidade de adotar novas versões conforme sua conveniência e necessidade, sem afetar as versões anteriores.
+
+Essas estratégias de versionamento garantem que nossa API possa evoluir de maneira sustentável e facilitando a introdução de novas funcionalidades.
+
