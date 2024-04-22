@@ -30,7 +30,7 @@ A aplicação utiliza a API da Invertexto para validar CPF, garantindo que os as
 
 ## Arquitetura Backend 
 O backend foi construído utilizando o framework Spring Boot, organizado em uma arquitetura de pacotes clara e modular que promove a separação de responsabilidades 
-e facilita a manutenção. Aqui está uma visão geral da estrutura de diretórios do nosso backend:
+e facilita a manutenção. Aqui está uma visão geral da estrutura de diretórios do backend:
 
 - `sicredi`:
   - `vote`: 
@@ -54,10 +54,10 @@ e facilita a manutenção. Aqui está uma visão geral da estrutura de diretóri
 ## Como Utilizar
 ### Acesso Remoto à Aplicação
 Para utilizar a aplicação sem a necessidade de baixar o código localmente, você pode acessar diretamente através da URL https://assembly-u4dv.onrender.com/swagger-ui/index.html, a aplicação está hospedada no Render em uma versão gratuita, 
-por isso ao acessar a URL pela primeira vez depois de um periodo de ausência levará em torno de 1 minuto para que a URL fique disponível novamente.
+por isso ao acessar a URL pela primeira vez depois de um periodo de ausência levará em torno de 1 minuto para que fique disponível novamente.
 
 ### Local
-git clone https://github.com/GiovanniFrozza/assembly.git <br>
+`git clone https://github.com/GiovanniFrozza/assembly.git` <br>
 Acesse `http://localhost:8080/swagger-ui.html` para visualizar e interagir com a documentação da API.
 
 
