@@ -20,7 +20,7 @@ O sistema permite cadastrar pautas, abrir sessões de votação, receber votos e
 
 ## Integrações com APIs Externas
 ### Validação de Elegibilidade para Votar
-Inicialmente, a aplicação deveria integrar-se a uma API fornecida pelo organizador do desafio para validar se os usuários estão autorizados a votar. 
+Inicialmente, a aplicação deveria integrar-se a uma API fornecida para validar se os usuários estão autorizados a votar. 
 No entanto, devido a problemas de disponibilidade dessa API durante o desenvolvimento, foi necessário implementar uma solução alternativa.
 Para contornar essa indisponibilidade, foi criado uma simulação (*mock*) da API esperada. Essa simulação é realizada diretamente no código, onde uma função retorna um resultado randomico simulando se o associado pode ou não votar.
 
@@ -58,7 +58,7 @@ por isso ao acessar a URL pela primeira vez depois de um periodo de ausência le
 
 ### Local
 `git clone https://github.com/GiovanniFrozza/assembly.git` <br>
-Acesse `http://localhost:8080/swagger-ui.html` para visualizar e interagir com a documentação da API.
+Após executar a aplicaçao basta acessar `http://localhost:8080/swagger-ui.html` para visualizar e interagir com a documentação da API.
 
 
 ## Decisões de Projeto
